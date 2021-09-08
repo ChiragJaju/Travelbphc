@@ -14,12 +14,14 @@ router.route("/signup").post(async (req, res) => {
     const email = req.body.email.trim();
     const password = req.body.password;
     const existingUser = await user.findOne({ email: email });
+
     if (existingUser) {
-      // console.log("gg");
-      return res.status(400).json({
+      return res.json({
         errorMessage: "An account with this email already exists. Please Login",
+        value: false,
       });
     }
+
     //Hash the password
     const salt = await bcrypt.genSalt();
     const passwordHash = await bcrypt.hash(password, salt);
@@ -45,12 +47,12 @@ router.route("/signup").post(async (req, res) => {
       .cookie("token", token, {
         httpOnly: true,
       })
-      .send();
+      .send()
+      .json({ value: true });
   } catch (err) {
     console.error(err);
-    res.status(500).send();
+    res.json({ value: false });
   }
-  // res.send(newUser);
 });
 
 //Save Post

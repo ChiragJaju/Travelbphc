@@ -67,7 +67,9 @@ export default function CustomCard(props) {
               className={classes.arrow}
               display="inline"
               fontSize="h3.fontSize"
-            >{`->`}</Box>
+            >
+              <i class="fas fa-arrow-right"></i>
+            </Box>
             <hr />
           </Grid>
           <Grid
@@ -111,7 +113,10 @@ export default function CustomCard(props) {
               {props.post.PdateAndTime.hour < 12
                 ? props.post.PdateAndTime.hour
                 : props.post.PdateAndTime.hour - 12}
-              :{props.post.PdateAndTime.min}
+              :
+              {props.post.PdateAndTime.min >= 10
+                ? props.post.PdateAndTime.min
+                : "0" + props.post.PdateAndTime.min}
               {props.post.PdateAndTime.hour < 12 ? " am" : " pm"}
             </Box>
           </Grid>

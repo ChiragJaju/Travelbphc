@@ -40,74 +40,52 @@ export default function SignUp() {
   const [nameInput, setNameInput] = useState("");
   const [emailInput, setEmailInput] = useState("");
   const [passwordInput, setPasswordInput] = useState("");
-  const [isFormValid, setIsFormValid] = useState(false);
-  const [enteredValid, setEnteredValid] = useState(true);
+  const [isEnteredValid, setIsEnteredValid] = useState(undefined);
+  const [isEmailValid, setIsEmailValid] = useState(undefined);
 
+  var isFormValid = undefined;
   const handlePasswordChange = (event) => {
     setPasswordInput(event.target.value);
-    if (
-      nameInput.trim().length !== 0 &&
-      emailInput.trim().length !== 0 &&
-      passwordInput.trim().length !== 0
-    ) {
-      setIsFormValid(true);
-    }
   };
 
   const handleNameChange = (event) => {
     setNameInput(event.target.value);
-    if (
-      nameInput.trim().length !== 0 &&
-      emailInput.trim().length !== 0 &&
-      passwordInput.trim().length !== 0
-    ) {
-      setIsFormValid(true);
-    }
   };
   const handleEmailChange = (event) => {
     setEmailInput(event.target.value);
+  };
+
+  const handleClick = async (event) => {
+    event.preventDefault();
     if (
       nameInput.trim().length !== 0 &&
       emailInput.trim().length !== 0 &&
-      passwordInput.trim().length !== 0
+      passwordInput.trim().length !== 0 &&
+      emailInput.trim().includes("@")
     ) {
-      setIsFormValid(true);
+      isFormValid = true;
+      setIsEnteredValid(true);
+    } else {
+      isFormValid = false;
+      setIsEnteredValid(false);
     }
-  };
 
-  // const checkInput = () => {
-  //   if (
-  //     nameInput.trim().length !== 0 &&
-  //     emailInput.trim().length !== 0 &&
-  //     passwordInput.trim().length !== 0
-  //   ) {
-  //     setIsFormValid(true);
-  //   }
-  // };
-
-  // IF I CHECK IN HANDLECLICK, IT TAKES TIME TO UPDATE AND HENCE DOESNT GO AS CORRECT
-  const handleClick = async (event) => {
-    event.preventDefault();
     const newUser = {
       name: nameInput,
       email: emailInput,
       password: passwordInput,
     };
 
-    // await checkInput();
-    //NEEED TO DO SOMETHING ABOUT THIS-------------------------------------------
-
     if (isFormValid) {
-      // console.log(newNote);
-      await axios.post("/api/signup", newUser);
-      setEmailInput("");
-      setNameInput("");
-      setPasswordInput("");
-      setEnteredValid(true);
+      const { data } = await axios.post("/api/signup", newUser);
+      if (data.value) {
+        setEmailInput("");
+        setNameInput("");
+        setPasswordInput("");
+      }
+
+      setIsEmailValid(data.value);
       getLoggedIn();
-    } else {
-      setEnteredValid(false);
-      return;
     }
   };
 
@@ -178,8 +156,15 @@ export default function SignUp() {
             >
               Sign Up
             </Button>
-            {!enteredValid && (
-              <Typography>Please Enter Valid Information!</Typography>
+            {isEnteredValid === false && (
+              <Typography style={{ color: "#ff0000" }}>
+                Please Enter Valid Information!
+              </Typography>
+            )}
+            {isEmailValid === false && (
+              <Typography style={{ color: "#ff0000" }}>
+                This Email is already Registered, Please Login.
+              </Typography>
             )}
           </form>
         </div>

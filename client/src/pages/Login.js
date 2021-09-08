@@ -59,9 +59,13 @@ export default function Login() {
 
       const response = await axios.post("/api/login", loginData);
       const isWrong = response.data.value;
+
       setCorrectInput(isWrong);
-      setEmailInput("");
-      setPasswordInput("");
+      if (isWrong) {
+        setEmailInput("");
+        setPasswordInput("");
+      }
+
       getLoggedIn();
     } catch (error) {
       console.error(error);
@@ -118,6 +122,11 @@ export default function Login() {
             >
               Sign In
             </Button>
+            {correctInput === false && (
+              <Typography style={{ color: "#ff0000" }}>
+                Invalid Email or Password!
+              </Typography>
+            )}
           </form>
         </div>
       </Container>

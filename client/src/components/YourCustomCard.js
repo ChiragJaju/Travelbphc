@@ -84,13 +84,16 @@ export default function YourCustomCard(props) {
             {props.post.PdateAndTime.hour < 12
               ? props.post.PdateAndTime.hour
               : props.post.PdateAndTime.hour - 12}
-            :{props.post.PdateAndTime.min}
+            :
+            {props.post.PdateAndTime.min >= 10
+              ? props.post.PdateAndTime.min
+              : "0" + props.post.PdateAndTime.min}
             {props.post.PdateAndTime.hour < 12 ? " am" : " pm"}
           </Box>
         </Grid>
         {props.post.Preq.map((req) => {
           return (
-            <Grid xs={12}>
+            <Grid item xs={12}>
               <RequestText req={req}></RequestText>
             </Grid>
           );

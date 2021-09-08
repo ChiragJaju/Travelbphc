@@ -1,23 +1,22 @@
 import React, { useState, useContext, useEffect } from "react";
-import Navbar from "./Navbar";
-import Copyright from "../components/Copyright";
-import Card from "@material-ui/core/Card";
+import {
+  Card,
+  Button,
+  MenuItem,
+  FormControl,
+  Grid,
+  CardContent,
+  Select,
+  FormHelperText,
+  InputLabel,
+} from "@material-ui/core";
 import "date-fns";
-import MenuItem from "@material-ui/core/MenuItem";
-import Button from "@material-ui/core/Button";
-import FormControl from "@material-ui/core/FormControl";
 import { Typography } from "@material-ui/core";
-import Grid from "@material-ui/core/Grid";
 import AuthContext from "../context/AuthContext";
 import DateFnsUtils from "@date-io/date-fns";
-import CardContent from "@material-ui/core/CardContent";
-import Select from "@material-ui/core/Select";
-import FormHelperText from "@material-ui/core/FormHelperText";
-import InputLabel from "@material-ui/core/InputLabel";
 import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker,
-  KeyboardTimePicker,
 } from "@material-ui/pickers";
 import { makeStyles } from "@material-ui/core/styles";
 import CustomCard from "../components/CustomCard";
@@ -80,7 +79,7 @@ export default function Filter() {
       if (
         Math.abs(
           goodDate.setHours(0, 0, 0, 0) - selectedDate.setHours(0, 0, 0, 0)
-        ) <= 8640000
+        ) <= 0
       )
         return true;
       else return false;
@@ -160,7 +159,7 @@ export default function Filter() {
                   />
                 </Grid>
               </MuiPickersUtilsProvider>
-              <Grid xs={4}>
+              <Grid item xs={4}>
                 <Button
                   variant="contained"
                   style={{
@@ -174,7 +173,7 @@ export default function Filter() {
                   By Place
                 </Button>
               </Grid>
-              <Grid xs={4}>
+              <Grid item xs={4}>
                 <Button
                   variant="contained"
                   style={{
@@ -191,8 +190,12 @@ export default function Filter() {
             </Grid>
 
             {pastDate === true && (
-              <Typography variant="h6" color="error">
-                Please Enter a Valid Date!
+              <Typography
+                variant="h6"
+                color="textPrimary"
+                style={{ marginTop: "1vw" }}
+              >
+                You are viewing Past Requests!
               </Typography>
             )}
           </CardContent>
