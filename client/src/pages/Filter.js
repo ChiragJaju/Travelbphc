@@ -102,125 +102,133 @@ export default function Filter() {
 
   return (
     <>
-      <Card variant="outlined" className={classes.card}>
-        <Typography variant="h4">Filter</Typography>
-        <form className={classes.form} noValidate>
-          <CardContent>
-            <Grid
-              container
-              direction="row"
-              justifyContent="flex-start"
-              alignItems="flex-start"
-            >
-              <Grid item xs={4}>
-                <FormControl required className={classes.formControl}>
-                  <InputLabel id="demo-simple-select-required-label">
-                    Arrival
-                  </InputLabel>
-                  <Select
-                    labelId="demo-simple-select-required-label"
-                    id="demo-simple-select-required"
-                    value={arrival}
-                    onChange={handleArrivalChange}
-                    className={classes.selectEmpty}
-                  >
-                    <MenuItem value={"Campus"}>Campus</MenuItem>
-                    <MenuItem value={"Airport"}>Airport</MenuItem>
-                    <MenuItem value={"Bustop"}>Bustop</MenuItem>
-                  </Select>
-                  <FormHelperText>Required</FormHelperText>
-                </FormControl>
-              </Grid>
-              <Grid item xs={4}>
-                <FormControl required className={classes.formControl}>
-                  <InputLabel id="demo-simple-select-required-label">
-                    Destination
-                  </InputLabel>
-                  <Select
-                    labelId="demo-simple-select-required-label"
-                    id="demo-simple-select-required"
-                    value={destination}
-                    onChange={handleDestinationChange}
-                    className={classes.selectEmpty}
-                  >
-                    <MenuItem value={"Campus"}>Campus</MenuItem>
-                    <MenuItem value={"Airport"}>Airport</MenuItem>
-                    <MenuItem value={"Bustop"}>Bustop</MenuItem>
-                  </Select>
-                  <FormHelperText>Required</FormHelperText>
-                </FormControl>
-              </Grid>
-
-              <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                <Grid item xs={4}>
-                  <KeyboardDatePicker
-                    margin="normal"
-                    id="date-picker-dialog"
-                    label="Arrival Date"
-                    format="dd/MM/yyyy"
-                    value={selectedDate}
-                    onChange={handleDateChange}
-                    KeyboardButtonProps={{
-                      "aria-label": "change date",
-                    }}
-                  />
-                </Grid>
-              </MuiPickersUtilsProvider>
-              <Grid item xs={4}>
-                <Button
-                  variant="contained"
-                  style={{
-                    backgroundColor: "#FF1268",
-                    color: "#FFFFFF",
-                    marginTop: "50px",
-                  }}
-                  className={classes.submitButton}
-                  onClick={handlePlaceSubmit}
-                >
-                  By Place
-                </Button>
-              </Grid>
-              <Grid item xs={4}>
-                <Button
-                  variant="contained"
-                  style={{
-                    backgroundColor: "#FF1268",
-                    color: "#FFFFFF",
-                    marginTop: "50px",
-                  }}
-                  className={classes.submitButton}
-                  onClick={handleDateSubmit}
-                >
-                  By Date
-                </Button>
-              </Grid>
-            </Grid>
-
-            {pastDate === true && (
-              <Typography
-                variant="h6"
-                color="textPrimary"
-                style={{ marginTop: "1vw" }}
+      <div>
+        <Card variant="outlined" className={classes.card}>
+          <Typography variant="h4">Filter</Typography>
+          <form className={classes.form} noValidate>
+            <CardContent>
+              <Grid
+                container
+                direction="row"
+                justifyContent="flex-start"
+                alignItems="flex-start"
               >
-                You are viewing Past Requests!
-              </Typography>
-            )}
-          </CardContent>
-        </form>
-      </Card>
-      <hr />
-      {postsToShow.length !== 0 && (
-        <Typography variant="h3" style={{ margin: "1vw 2.5vw 0" }}>
-          Results:
-        </Typography>
-      )}
-      {postsToShow.map((post) => {
-        return (
-          <>
-            <CustomCard post={post}></CustomCard>
-          </>
-        );
-      })}
+                <Grid item xs={4}>
+                  <FormControl required className={classes.formControl}>
+                    <InputLabel id="demo-simple-select-required-label">
+                      Arrival
+                    </InputLabel>
+                    <Select
+                      labelId="demo-simple-select-required-label"
+                      id="demo-simple-select-required"
+                      value={arrival}
+                      onChange={handleArrivalChange}
+                      className={classes.selectEmpty}
+                    >
+                      <MenuItem value={"Campus"}>Campus</MenuItem>
+                      <MenuItem value={"Airport"}>Airport</MenuItem>
+                      <MenuItem value={"Bustop"}>Bustop</MenuItem>
+                    </Select>
+                    <FormHelperText>Required</FormHelperText>
+                  </FormControl>
+                </Grid>
+                <Grid item xs={4}>
+                  <FormControl required className={classes.formControl}>
+                    <InputLabel id="demo-simple-select-required-label">
+                      Destination
+                    </InputLabel>
+                    <Select
+                      labelId="demo-simple-select-required-label"
+                      id="demo-simple-select-required"
+                      value={destination}
+                      onChange={handleDestinationChange}
+                      className={classes.selectEmpty}
+                    >
+                      <MenuItem value={"Campus"}>Campus</MenuItem>
+                      <MenuItem value={"Airport"}>Airport</MenuItem>
+                      <MenuItem value={"Bustop"}>Bustop</MenuItem>
+                    </Select>
+                    <FormHelperText>Required</FormHelperText>
+                  </FormControl>
+                </Grid>
+
+                <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                  <Grid item xs={4}>
+                    <KeyboardDatePicker
+                      margin="normal"
+                      id="date-picker-dialog"
+                      label="Arrival Date"
+                      format="dd/MM/yyyy"
+                      value={selectedDate}
+                      onChange={handleDateChange}
+                      KeyboardButtonProps={{
+                        "aria-label": "change date",
+                      }}
+                    />
+                  </Grid>
+                </MuiPickersUtilsProvider>
+                <Grid item xs={4}>
+                  <Button
+                    variant="contained"
+                    style={{
+                      backgroundColor: "#FF1268",
+                      color: "#FFFFFF",
+                      marginTop: "50px",
+                    }}
+                    className={classes.submitButton}
+                    onClick={handlePlaceSubmit}
+                  >
+                    By Place
+                  </Button>
+                </Grid>
+                <Grid item xs={4}>
+                  <Button
+                    variant="contained"
+                    style={{
+                      backgroundColor: "#FF1268",
+                      color: "#FFFFFF",
+                      marginTop: "50px",
+                    }}
+                    className={classes.submitButton}
+                    onClick={handleDateSubmit}
+                  >
+                    By Date
+                  </Button>
+                </Grid>
+              </Grid>
+
+              {pastDate === true && (
+                <Typography
+                  variant="h6"
+                  color="textPrimary"
+                  style={{ marginTop: "1vw" }}
+                >
+                  You are viewing Past Requests!
+                </Typography>
+              )}
+            </CardContent>
+          </form>
+        </Card>
+        <hr />
+        {postsToShow.length !== 0 && (
+          <Typography variant="h4" style={{ margin: "1vw 2.5vw 0" }}>
+            Results:
+          </Typography>
+        )}
+        <div style={{ padding: "0 2.5vw 50px" }}>
+          {/* responsive */}
+          <Grid
+            container
+            direction="row"
+            justifyContent="flex-start"
+            alignItems="flex-start"
+          >
+            {postsToShow.map((post) => {
+              return <CustomCard post={post}></CustomCard>;
+            })}
+          </Grid>
+        </div>
+      </div>
     </>
   );
 }

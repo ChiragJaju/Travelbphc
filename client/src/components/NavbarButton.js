@@ -3,7 +3,7 @@ import Button from "@material-ui/core/Button";
 
 const NavbarButton = (props) => {
   return (
-    <Button color="#ffffff" variant="contained" style={{ marginRight: "25px" }}>
+    <Button color="#ffffff" variant="contained" style={{ marginRight: "1vw" }}>
       {props.children}
     </Button>
   );
