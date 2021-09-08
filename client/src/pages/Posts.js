@@ -1,5 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
-import Typography from "@material-ui/core/Typography";
+import React, { useContext } from "react";
 import CustomCard from "../components/CustomCard";
 import Copyright from "../components/Copyright";
 import AuthContext from "../context/AuthContext";
@@ -9,7 +8,6 @@ function Posts() {
 
   return (
     <div>
-      {/* <Typography variant="h3">All Posts:</Typography> */}
       {notes.map((post) => {
         return <CustomCard post={post}></CustomCard>;
       })}

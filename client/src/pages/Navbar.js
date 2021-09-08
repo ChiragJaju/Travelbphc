@@ -1,29 +1,28 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import {
+  Button,
+  AppBar,
+  Toolbar,
+  CssBaseline,
+  useScrollTrigger,
+  Grid,
+  Fab,
+  Zoom,
+} from "@material-ui/core";
 import AuthContext from "../context/AuthContext";
-import Button from "@material-ui/core/Button";
-import LogOutButton from "../components/LogOutBtn";
+
 import PropTypes from "prop-types";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-
 import { makeStyles } from "@material-ui/core/styles";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import useScrollTrigger from "@material-ui/core/useScrollTrigger";
-import Grid from "@material-ui/core/Grid";
-
-import Fab from "@material-ui/core/Fab";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
-import Zoom from "@material-ui/core/Zoom";
+import LoggedIn from "./Navbar/LoggedIn";
+import NotLoggedIn from "./Navbar/NotLoggedIn";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     position: "fixed",
     bottom: theme.spacing(8),
     right: theme.spacing(2),
-  },
-  logOut: {
-    textAlign: "right",
   },
 }));
 
@@ -58,13 +57,12 @@ function ScrollTop(props) {
 
 ScrollTop.propTypes = {
   children: PropTypes.element.isRequired,
-
   window: PropTypes.func,
 };
 
 export default function BackToTop(props) {
   const { loggedIn } = useContext(AuthContext);
-  const classes = useStyles();
+
   return (
     <React.Fragment>
       <CssBaseline />
@@ -86,65 +84,7 @@ export default function BackToTop(props) {
                 </Link>
               </Button>
             </Grid>
-            {loggedIn === false && (
-              <>
-                <Grid item xs={6} className={classes.logOut}>
-                  <Button
-                    color="#ffffff"
-                    variant="contained"
-                    style={{ marginRight: "25px" }}
-                  >
-                    <Link
-                      to="./login"
-                      style={{ textDecoration: "none", color: "#424242" }}
-                    >
-                      Login
-                    </Link>
-                  </Button>
-
-                  <Button color="#ffffff" variant="contained">
-                    <Link
-                      to="/signup"
-                      style={{ textDecoration: "none", color: "#424242" }}
-                    >
-                      Signup
-                    </Link>
-                  </Button>
-                </Grid>
-              </>
-            )}
-            {loggedIn === true && (
-              <>
-                <Grid xs={6} className={classes.logOut}>
-                  <Button
-                    color="#ffffff"
-                    variant="contained"
-                    style={{ marginRight: "25px" }}
-                  >
-                    <Link
-                      to="/filter"
-                      style={{ textDecoration: "none", color: "#424242" }}
-                    >
-                      Filter
-                    </Link>
-                  </Button>
-                  <Button
-                    color="#ffffff"
-                    variant="contained"
-                    style={{ marginRight: "25px" }}
-                  >
-                    <Link
-                      to="/posts"
-                      style={{ textDecoration: "none", color: "#424242" }}
-                    >
-                      All Posts
-                    </Link>
-                  </Button>
-
-                  <LogOutButton />
-                </Grid>
-              </>
-            )}
+            {loggedIn ? <LoggedIn /> : <NotLoggedIn />}
           </Grid>
         </Toolbar>
       </AppBar>

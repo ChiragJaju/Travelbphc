@@ -56,7 +56,6 @@ router.route("/signup").post(async (req, res) => {
 //Save Post
 router.route("/post/submit").post(async (req, res) => {
   try {
-    console.log(req.body);
     const name = req.body.name;
     const id = req.body.id;
     const email = req.body.email;
@@ -85,7 +84,7 @@ router.route("/post/submit").post(async (req, res) => {
       Pemail: email,
     });
     const savedUser = await newPost.save();
-    // console.log("saved");
+
     res.send({ value: true });
   } catch (err) {
     console.error(err);

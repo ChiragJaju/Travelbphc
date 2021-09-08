@@ -56,7 +56,7 @@ function Home() {
   const { userID, setUserInfo, userInfo, setNotes } = useContext(AuthContext);
 
   const firstDateIsPastDayComparedToSecond = (firstDate, secondDate) =>
-    firstDate.setHours(0, 0, 0, 0) - secondDate.setHours(0, 0, 0, 0) < 0;
+    firstDate.getTime() - secondDate.getTime() <= -1000 * 60 * 5;
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
@@ -64,30 +64,30 @@ function Home() {
     // console.log(dateAndTime);
   };
   useEffect(() => {
-    const currentDate = new Date();
-    const goodDate = new Date(selectedDate);
     const fetchData = async () => {
       const response = await axios.get("/api/posts");
       setNotes(response.data);
     };
 
     fetchData();
-
+  }, [setNotes]);
+  useEffect(() => {
+    const currentDate = new Date();
+    const goodDate = new Date(selectedDate);
     setPastDate(firstDateIsPastDayComparedToSecond(goodDate, currentDate));
-  }, [selectedDate, setNotes]);
-
-  async function getEmail() {
-    const loggedInRes = await axios.get("/api/userInfo/" + userID);
-    const data = loggedInRes.data;
-    setUserInfo({
-      name: data.name,
-      email: data.email,
-    });
-  }
+  }, [selectedDate]);
 
   useEffect(() => {
+    async function getEmail() {
+      const loggedInRes = await axios.get("/api/userInfo/" + userID);
+      const data = loggedInRes.data;
+      setUserInfo({
+        name: data.name,
+        email: data.email,
+      });
+    }
     getEmail();
-  }, []);
+  }, [userID, setUserInfo]);
 
   const handleArrivalChange = (event) => {
     setArrival(event.target.value);
@@ -249,7 +249,7 @@ function Home() {
           </CardContent>
         </form>
       </Card>
-      <Typography variant="h3" style={{ margin: "1vw 2.5vw 0" }}>
+      <Typography variant="h4" style={{ margin: "1vw 2.5vw 0" }}>
         To see your Posts click{" "}
         <Link to="./yourposts" style={{ color: "#FF1268" }}>
           here
