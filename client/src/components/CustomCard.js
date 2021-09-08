@@ -10,11 +10,12 @@ import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles((theme) => ({
   card: {
-    margin: "1vw 1vw",
+    margin: "1vw 1.5vw",
     backgroundColor: "#E0E0E0",
-    width: "47vw",
+    // width: "100%",
     padding: "2vw",
   },
+
   arrow: {
     fontSize: "h6.fontSize",
     color: theme.palette.grey[800],
@@ -48,121 +49,135 @@ export default function CustomCard(props) {
   };
 
   return (
-    <Box display="inline-block">
-      <Card variant="outlined" className={classes.card}>
-        <Grid
-          container
-          direction="row"
-          justifyContent="flex-start"
-          alignItems="flex-start"
-        >
-          <Grid item xs={5} className={classes.gridItem}>
-            <Box fontSize="h3.fontSize" color="fontWeightBold" display="inline">
-              {props.post.Parrival}
-            </Box>
-            <hr />
-          </Grid>
-          <Grid item xs={2} className={classes.gridItem}>
-            <Box
-              className={classes.arrow}
-              display="inline"
-              fontSize="h3.fontSize"
-            >
-              <i class="fas fa-arrow-right"></i>
-            </Box>
-            <hr />
-          </Grid>
+    <Grid item xs={12} md={6}>
+      <Box display="inline-block">
+        <Card variant="outlined" className={classes.card}>
           <Grid
-            item
-            xs={5}
-            style={{ textAlign: "right" }}
-            className={classes.gridItem}
+            container
+            direction="row"
+            justifyContent="flex-start"
+            alignItems="flex-start"
           >
-            <Box
-              fontSize="h3.fontSize"
-              color="fontWeightBold"
-              display="inline"
-              textAlign="right"
+            <Grid item xs={5} className={classes.gridItem}>
+              <Box
+                fontSize="h4.fontSize"
+                color="fontWeightBold"
+                display="inline"
+              >
+                {props.post.Parrival}
+              </Box>
+              <hr />
+            </Grid>
+            <Grid item xs={2} className={classes.gridItem}>
+              <Box
+                className={classes.arrow}
+                display="inline"
+                fontSize="h4.fontSize"
+              >
+                <i class="fas fa-arrow-right"></i>
+              </Box>
+              <hr />
+            </Grid>
+            <Grid
+              item
+              xs={5}
+              style={{ textAlign: "right" }}
+              className={classes.gridItem}
             >
-              {props.post.Pdestination}
-            </Box>
-            <hr />
-          </Grid>
+              <Box
+                fontSize="h4.fontSize"
+                color="fontWeightBold"
+                display="inline"
+                textAlign="right"
+              >
+                {props.post.Pdestination}
+              </Box>
+              <hr />
+            </Grid>
 
-          <Grid item xs={6} className={classes.gridItem}>
-            <Box fontSize="h5.fontSize" color="fontWeightBold" display="inline">
-              {`Date: `}
-              {props.post.PdateAndTime.date}/{props.post.PdateAndTime.month}/
-              {props.post.PdateAndTime.year}
-            </Box>
-          </Grid>
+            <Grid item xs={6} className={classes.gridItem}>
+              <Box
+                fontSize="h5.fontSize"
+                color="fontWeightBold"
+                display="inline"
+              >
+                {`Date: `}
+                {props.post.PdateAndTime.date}/{props.post.PdateAndTime.month}/
+                {props.post.PdateAndTime.year}
+              </Box>
+            </Grid>
 
-          <Grid
-            item
-            xs={6}
-            style={{ textAlign: "right" }}
-            className={classes.gridItem}
-          >
-            <Box
-              fontSize="h5.fontSize"
-              color="fontWeightBold"
-              display="inline"
-              textAlign="right"
+            <Grid
+              item
+              xs={6}
+              style={{ textAlign: "right" }}
+              className={classes.gridItem}
             >
-              {` Time: `}
-              {props.post.PdateAndTime.hour < 12
-                ? props.post.PdateAndTime.hour
-                : props.post.PdateAndTime.hour - 12}
-              :
-              {props.post.PdateAndTime.min >= 10
-                ? props.post.PdateAndTime.min
-                : "0" + props.post.PdateAndTime.min}
-              {props.post.PdateAndTime.hour < 12 ? " am" : " pm"}
-            </Box>
-          </Grid>
-          <Grid item xs={6} className={classes.gridItem}>
-            <Box fontSize="h5.fontSize" color="fontWeightBold" display="inline">
-              {props.post.Pname}
-            </Box>
-          </Grid>
+              <Box
+                fontSize="h5.fontSize"
+                color="fontWeightBold"
+                display="inline"
+                textAlign="right"
+              >
+                {` Time: `}
+                {props.post.PdateAndTime.hour < 12
+                  ? props.post.PdateAndTime.hour
+                  : props.post.PdateAndTime.hour - 12}
+                :
+                {props.post.PdateAndTime.min >= 10
+                  ? props.post.PdateAndTime.min
+                  : "0" + props.post.PdateAndTime.min}
+                {props.post.PdateAndTime.hour < 12 ? " am" : " pm"}
+              </Box>
+            </Grid>
+            <Grid item xs={6} className={classes.gridItem}>
+              <Box
+                fontSize="h5.fontSize"
+                color="fontWeightBold"
+                display="inline"
+              >
+                {props.post.Pname}
+              </Box>
+            </Grid>
 
-          <Grid
-            item
-            xs={6}
-            style={{ textAlign: "right" }}
-            className={classes.gridItem}
-          >
-            <Box
-              fontSize="h5.fontSize"
-              color="fontWeightBold"
-              display="inline"
-              textAlign="right"
+            <Grid
+              item
+              xs={6}
+              style={{ textAlign: "right" }}
+              className={classes.gridItem}
             >
-              {props.post.Pemail}
-            </Box>
+              <Box
+                fontSize="h5.fontSize"
+                color="fontWeightBold"
+                display="inline"
+                textAlign="right"
+              >
+                {props.post.Pemail}
+              </Box>
+            </Grid>
+
+            <Button
+              variant="contained"
+              style={{ backgroundColor: "#FF005D", color: "#FFFFFF" }}
+              className={classes.submitButton}
+              onClick={handleClick}
+            >
+              Request
+            </Button>
+
+            {isReqSent === true && (
+              <Typography variant="h6" className={classes.text}>
+                {"Request Successfully Submitted!"}
+              </Typography>
+            )}
+            {isReqSent === false && (
+              <Typography variant="h6" className={classes.textFalse}>
+                {"Request was already sent."}
+              </Typography>
+            )}
           </Grid>
-
-          <Button
-            variant="contained"
-            style={{ backgroundColor: "#FF005D", color: "#FFFFFF" }}
-            className={classes.submitButton}
-            onClick={handleClick}
-          >
-            Request
-          </Button>
-
-          {isReqSent === true && (
-            <Typography variant="h6" className={classes.text}>
-              {"Request Successfully Submitted!"}
-            </Typography>
-          )}
-          {isReqSent === false && (
-            <Typography variant="h6" className={classes.textFalse}>
-              {"Request was already sent."}
-            </Typography>
-          )}
-        </Grid>
-      </Card>
-    </Box>
+        </Card>
+      </Box>
+    </Grid>
   );
 }

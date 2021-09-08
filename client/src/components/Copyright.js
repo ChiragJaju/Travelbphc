@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
     position: "fixed",
     flexDirection: "column",
     top: "94vh",
-    minHeight: "100vh",
+    minHeight: "104vh",
     textAlign: "center",
     width: "100vw",
   },

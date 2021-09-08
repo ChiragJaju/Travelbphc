@@ -15,7 +15,7 @@ const NotLoggedIn = () => {
   const classes = useStyles();
   return (
     <>
-      <Grid xs={6} className={classes.logOut}>
+      <Grid xs={11} md={6} className={classes.logOut}>
         <NavbarButton>
           <Link
             to="/filter"

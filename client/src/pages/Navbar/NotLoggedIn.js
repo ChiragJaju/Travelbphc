@@ -14,7 +14,7 @@ const LoggedIn = (props) => {
   const classes = useStyles();
   return (
     <>
-      <Grid item xs={6} className={classes.logOut}>
+      <Grid item xs={11} md={6} className={classes.logOut}>
         <NavbarButton>
           <Link
             to="./login"

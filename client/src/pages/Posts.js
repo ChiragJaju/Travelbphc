@@ -3,6 +3,7 @@ import CustomCard from "../components/CustomCard";
 import Copyright from "../components/Copyright";
 import AuthContext from "../context/AuthContext";
 import axios from "axios";
+import Grid from "@material-ui/core/Grid";
 
 function Posts() {
   const { notes, setNotes } = useContext(AuthContext);
@@ -22,12 +23,22 @@ function Posts() {
   }, [setNotes, notes]);
 
   return (
-    <div>
-      {postsToShow.map((post) => {
-        return <CustomCard post={post}></CustomCard>;
-      })}
+    <>
+      <div style={{ padding: "0 2.5vw 50px" }}>
+        {/* responsive */}
+        <Grid
+          container
+          direction="row"
+          justifyContent="flex-start"
+          alignItems="flex-start"
+        >
+          {postsToShow.map((post) => {
+            return <CustomCard post={post}></CustomCard>;
+          })}
+        </Grid>
+      </div>
       <Copyright />
-    </div>
+    </>
   );
 }
 

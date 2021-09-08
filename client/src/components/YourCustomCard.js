@@ -35,7 +35,7 @@ export default function YourCustomCard(props) {
         alignItems="flex-start"
       >
         <Grid item xs={5} className={classes.gridItem}>
-          <Box fontSize="h3.fontSize" color="fontWeightBold" display="inline">
+          <Box fontSize="h4.fontSize" color="fontWeightBold" display="inline">
             {props.post.Parrival}
           </Box>
         </Grid>
@@ -43,8 +43,10 @@ export default function YourCustomCard(props) {
           <Box
             className={classes.arrow}
             display="inline"
-            fontSize="h3.fontSize"
-          >{`->`}</Box>
+            fontSize="h4.fontSize"
+          >
+            <i class="fas fa-arrow-right"></i>
+          </Box>
         </Grid>
         <Grid
           item
@@ -53,7 +55,7 @@ export default function YourCustomCard(props) {
           className={classes.gridItem}
         >
           <Box
-            fontSize="h3.fontSize"
+            fontSize="h4.fontSize"
             color="fontWeightBold"
             display="inline"
             textAlign="right"

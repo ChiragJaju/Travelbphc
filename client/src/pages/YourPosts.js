@@ -28,6 +28,11 @@ export default function YourPosts() {
 
   return (
     <>
+      {yourPosts.length === 0 && pastPosts.length === 0 && (
+        <Typography variant="h4" style={{ margin: "1vw 1vw" }}>
+          No posts to Display.
+        </Typography>
+      )}
       {yourPosts.map((post) => {
         return (
           <>
@@ -35,10 +40,14 @@ export default function YourPosts() {
           </>
         );
       })}
-      <hr color="red" />
-      <Typography variant="h4" style={{ margin: "1vw 2.5vw 0" }}>
-        Request History:
-      </Typography>
+      {pastPosts.length !== 0 && (
+        <>
+          <hr color="red" />
+          <Typography variant="h4" style={{ margin: "1vw 2.5vw 0" }}>
+            Request History:
+          </Typography>
+        </>
+      )}
       {pastPosts.map((post) => {
         return (
           <>

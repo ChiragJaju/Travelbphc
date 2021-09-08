@@ -74,7 +74,7 @@ export default function BackToTop(props) {
             justifyContent="flex-start"
             alignItems="center"
           >
-            <Grid item xs={6}>
+            <Grid item xs={1} md={6}>
               <Button color="#ffffff" variant="contained">
                 <Link
                   to="/"
