@@ -1,12 +1,20 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
+import axios from "axios";
 import AuthContext from "../context/AuthContext";
 import YourCustomCard from "../components/YourCustomCard";
 import Typography from "@material-ui/core/Typography";
 
 export default function YourPosts() {
-  const { userID, notes } = useContext(AuthContext);
+  const { userID, notes, setNotes } = useContext(AuthContext);
   const currentDate = new Date();
   const pastPosts = [];
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await axios.get("/api/posts");
+      setNotes(response.data);
+    };
+    fetchData();
+  }, [setNotes, notes]);
   const yourPosts = notes.filter((post) => {
     if (post.Pid === userID) {
       const postDate = new Date(post.PdateAndTime.data);

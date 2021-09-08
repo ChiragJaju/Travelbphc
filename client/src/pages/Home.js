@@ -68,7 +68,6 @@ function Home() {
       const response = await axios.get("/api/posts");
       setNotes(response.data);
     };
-
     fetchData();
   }, [setNotes]);
   useEffect(() => {

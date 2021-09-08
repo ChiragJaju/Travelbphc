@@ -1,4 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
+import axios from "axios";
 import {
   Card,
   Button,
@@ -45,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Filter() {
   const classes = useStyles();
-  const { notes } = useContext(AuthContext);
+  const { notes, setNotes } = useContext(AuthContext);
   const [arrival, setArrival] = useState("Airport");
   const [destination, setDestination] = useState("Campus");
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -86,7 +87,13 @@ export default function Filter() {
     });
     setPostsToShow(response);
   };
-
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await axios.get("/api/posts");
+      setNotes(response.data);
+    };
+    fetchData();
+  }, [setNotes, notes]);
   useEffect(() => {
     const currentDate = new Date();
     const goodDate = new Date(selectedDate);
