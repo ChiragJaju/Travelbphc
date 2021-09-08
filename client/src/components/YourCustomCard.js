@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function YourCustomCard(props) {
   const classes = useStyles();
-  console.log(props.post.Preq);
+
   return (
     <Card variant="outlined" className={classes.card}>
       <Grid

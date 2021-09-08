@@ -5,8 +5,6 @@ import {
   Button,
   CssBaseline,
   TextField,
-  Link,
-  Grid,
   Typography,
   Container,
 } from "@material-ui/core";
@@ -43,7 +41,7 @@ export default function Login() {
   const [emailInput, setEmailInput] = useState("");
   const [correctInput, setCorrectInput] = useState(undefined);
   const classes = useStyles();
-  const { getLoggedIn, setUserEmail } = useContext(AuthContext);
+  const { getLoggedIn } = useContext(AuthContext);
   const handleEmailChange = (event) => {
     setEmailInput(event.target.value);
   };
@@ -65,7 +63,6 @@ export default function Login() {
       setEmailInput("");
       setPasswordInput("");
       getLoggedIn();
-      // console.log(correctInput);
     } catch (error) {
       console.error(error);
     }
@@ -121,18 +118,6 @@ export default function Login() {
             >
               Sign In
             </Button>
-            <Grid container>
-              <Grid item>
-                <Link href="/signup" variant="body2" color="textPrimary">
-                  {"Don't have an account? Sign Up"}
-                </Link>
-                {correctInput === false && (
-                  <Typography variant="h6" color="error">
-                    Wrong Email or Password!
-                  </Typography>
-                )}
-              </Grid>
-            </Grid>
           </form>
         </div>
       </Container>

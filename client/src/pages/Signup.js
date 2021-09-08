@@ -6,7 +6,6 @@ import {
   Button,
   CssBaseline,
   TextField,
-  Link,
   Grid,
   Typography,
   Container,
@@ -182,13 +181,6 @@ export default function SignUp() {
             {!enteredValid && (
               <Typography>Please Enter Valid Information!</Typography>
             )}
-            <Grid container justifyContent="flex-end">
-              <Grid item>
-                <Link href="/login" variant="body2" color="textPrimary">
-                  Already have an account? Sign in
-                </Link>
-              </Grid>
-            </Grid>
           </form>
         </div>
       </Container>
