@@ -67,9 +67,12 @@ export default function Filter() {
 
   const handlePlaceSubmit = () => {
     let filteredPosts = notes.filter((post) => {
-      if (post.Parrival === arrival && post.Pdestination === destination)
-        return true;
-      else return false;
+      if (post.Parrival === arrival && post.Pdestination === destination) {
+        const currentDate = new Date();
+        const goodDate = new Date(post.PdateAndTime.data);
+        if (goodDate.getTime() - currentDate.getTime() >= 0) return true;
+        else return false;
+      } else return false;
     });
 
     setPostsToShow(filteredPosts);
