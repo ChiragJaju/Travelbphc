@@ -4,7 +4,7 @@ const user = require("../models/user");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
-const auth = require("../middleware/auth");
+
 const posts = require("../models/Posts");
 dotenv.config();
 
@@ -198,6 +198,16 @@ router.post("/posts/request/:ID", async (req, res) => {
       });
       if (updatedPost) res.send(true);
     }
+  } catch (err) {
+    console.error(err);
+    res.status(500).send(false);
+  }
+});
+router.get("/deletepost/:ID", async (req, res) => {
+  try {
+    const id = req.params.ID;
+    await posts.findByIdAndDelete(id);
+    res.sendStatus(200);
   } catch (err) {
     console.error(err);
     res.status(500).send(false);

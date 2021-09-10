@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const cookieParser = require("cookie-parser");
 const path = require("path");
+const fs = require("fs");
 
 dotenv.config();
 
@@ -25,6 +26,7 @@ app.use("/api", require("./routes/dummyRoutes"));
 // app.get("/*", function (req, res) {
 //   const pathToIndex = path.join(__dirname, "client", "build", "index.html");
 //   const raw = fs.readFileSync(pathToIndex);
+//   console.log(raw);
 //   res.send(raw);
 // });
 
@@ -38,9 +40,3 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Express Server is running on port ${PORT}`);
 });
-
-app.get("/test", (req, res) => {
-  res.send("It works");
-});
-
-app.use("/customer", require("./routes/customer"));

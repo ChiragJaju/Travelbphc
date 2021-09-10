@@ -2,16 +2,18 @@ import React, { useState, useContext, useEffect } from "react";
 import AuthContext from "../context/AuthContext";
 import Copyright from "../components/Copyright";
 import axios from "axios";
-import Button from "@material-ui/core/Button";
-import FormControl from "@material-ui/core/FormControl";
-import { Typography } from "@material-ui/core";
-import Grid from "@material-ui/core/Grid";
+import {
+  Typography,
+  FormControl,
+  Grid,
+  Card,
+  CardContent,
+  MenuItem,
+  Select,
+  FormHelperText,
+  InputLabel,
+} from "@material-ui/core";
 import { Link } from "react-router-dom";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import MenuItem from "@material-ui/core/MenuItem";
-import Select from "@material-ui/core/Select";
-import FormHelperText from "@material-ui/core/FormHelperText";
 import "date-fns";
 import DateFnsUtils from "@date-io/date-fns";
 import {
@@ -20,8 +22,7 @@ import {
   KeyboardTimePicker,
 } from "@material-ui/pickers";
 import { makeStyles } from "@material-ui/core/styles";
-
-import InputLabel from "@material-ui/core/InputLabel";
+import PinkButton from "../components/PinkButton";
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -216,14 +217,7 @@ function Home() {
                   />
                 </Grid>
               </MuiPickersUtilsProvider>
-              <Button
-                variant="contained"
-                style={{ backgroundColor: "#FF1268", color: "#FFFFFF" }}
-                className={classes.submitButton}
-                onClick={handleSubmit}
-              >
-                Submit
-              </Button>
+              <PinkButton handleSubmit={handleSubmit}>Submit</PinkButton>
             </Grid>
             {samePlace === true && (
               <Typography variant="h6" color="error">

@@ -1,10 +1,8 @@
 import React from "react";
-import Card from "@material-ui/core/Card";
-import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
-
+import { Card, Grid, Box, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import RequestText from "./RequestText";
+import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -25,7 +23,10 @@ const useStyles = makeStyles((theme) => ({
 
 export default function YourCustomCard(props) {
   const classes = useStyles();
-
+  let dateData = props.post.PdateAndTime;
+  const handleClick = async () => {
+    await axios.get("/api/deletepost/" + props.post._id);
+  };
   return (
     <Card variant="outlined" className={classes.card}>
       <Grid
@@ -66,8 +67,7 @@ export default function YourCustomCard(props) {
         <Grid item xs={6} className={classes.gridItem}>
           <Box fontSize="h5.fontSize" color="fontWeightBold" display="inline">
             {`Date: `}
-            {props.post.PdateAndTime.date}/{props.post.PdateAndTime.month}/
-            {props.post.PdateAndTime.year}
+            {dateData.date}/{dateData.month}/{dateData.year}
           </Box>
         </Grid>
         <Grid
@@ -83,14 +83,9 @@ export default function YourCustomCard(props) {
             textAlign="right"
           >
             {` Time: `}
-            {props.post.PdateAndTime.hour < 12
-              ? props.post.PdateAndTime.hour
-              : props.post.PdateAndTime.hour - 12}
-            :
-            {props.post.PdateAndTime.min >= 10
-              ? props.post.PdateAndTime.min
-              : "0" + props.post.PdateAndTime.min}
-            {props.post.PdateAndTime.hour < 12 ? " am" : " pm"}
+            {dateData.hour < 12 ? dateData.hour : dateData.hour - 12}:
+            {dateData.min >= 10 ? dateData.min : "0" + dateData.min}
+            {dateData.hour < 12 ? " am" : " pm"}
           </Box>
         </Grid>
         {props.post.Preq.map((req) => {
@@ -100,6 +95,16 @@ export default function YourCustomCard(props) {
             </Grid>
           );
         })}
+        <Button
+          style={{
+            backgroundColor: "#424242",
+            color: "#e0e0e0",
+            marginTop: "20px",
+          }}
+          onClick={handleClick}
+        >
+          <i class="fas fa-trash-alt"></i>
+        </Button>
       </Grid>
     </Card>
   );

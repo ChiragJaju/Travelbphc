@@ -2,7 +2,6 @@ import React, { useState, useContext, useEffect } from "react";
 import axios from "axios";
 import {
   Card,
-  Button,
   MenuItem,
   FormControl,
   Grid,
@@ -21,6 +20,7 @@ import {
 } from "@material-ui/pickers";
 import { makeStyles } from "@material-ui/core/styles";
 import CustomCard from "../components/CustomCard";
+import PinkButton from "../components/PinkButton";
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -35,9 +35,7 @@ const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(0),
     width: "200px",
-  },
-  submitButton: {
-    marginTop: "20px",
+    marginBottom: "50px",
   },
   text: {
     color: "#33AB3E",
@@ -171,32 +169,14 @@ export default function Filter() {
                   </Grid>
                 </MuiPickersUtilsProvider>
                 <Grid item xs={4}>
-                  <Button
-                    variant="contained"
-                    style={{
-                      backgroundColor: "#FF1268",
-                      color: "#FFFFFF",
-                      marginTop: "50px",
-                    }}
-                    className={classes.submitButton}
-                    onClick={handlePlaceSubmit}
-                  >
+                  <PinkButton handleSubmit={handlePlaceSubmit}>
                     By Place
-                  </Button>
+                  </PinkButton>
                 </Grid>
                 <Grid item xs={4}>
-                  <Button
-                    variant="contained"
-                    style={{
-                      backgroundColor: "#FF1268",
-                      color: "#FFFFFF",
-                      marginTop: "50px",
-                    }}
-                    className={classes.submitButton}
-                    onClick={handleDateSubmit}
-                  >
+                  <PinkButton handleSubmit={handleDateSubmit}>
                     By Date
-                  </Button>
+                  </PinkButton>
                 </Grid>
               </Grid>
 

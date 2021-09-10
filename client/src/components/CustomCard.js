@@ -1,13 +1,9 @@
 import React, { useContext, useState } from "react";
-import Card from "@material-ui/core/Card";
-import Grid from "@material-ui/core/Grid";
+import { Card, Grid, Box, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import Box from "@material-ui/core/Box";
 import AuthContext from "../context/AuthContext";
-import Button from "@material-ui/core/Button";
 import axios from "axios";
-import Typography from "@material-ui/core/Typography";
-
+import PinkButton from "./PinkButton";
 const useStyles = makeStyles((theme) => ({
   card: {
     margin: "1vw 1.5vw",
@@ -35,6 +31,7 @@ export default function CustomCard(props) {
   const classes = useStyles();
   const [isReqSent, setIsReqSent] = useState(undefined);
   const { userInfo } = useContext(AuthContext);
+  let dateData = props.post.PdateAndTime;
   const handleClick = async (event) => {
     // console.log(props.post._id);
     const sendDetails = {
@@ -102,8 +99,7 @@ export default function CustomCard(props) {
                 display="inline"
               >
                 {`Date: `}
-                {props.post.PdateAndTime.date}/{props.post.PdateAndTime.month}/
-                {props.post.PdateAndTime.year}
+                {dateData.date}/{dateData.month}/{dateData.year}
               </Box>
             </Grid>
 
@@ -120,14 +116,9 @@ export default function CustomCard(props) {
                 textAlign="right"
               >
                 {` Time: `}
-                {props.post.PdateAndTime.hour < 12
-                  ? props.post.PdateAndTime.hour
-                  : props.post.PdateAndTime.hour - 12}
-                :
-                {props.post.PdateAndTime.min >= 10
-                  ? props.post.PdateAndTime.min
-                  : "0" + props.post.PdateAndTime.min}
-                {props.post.PdateAndTime.hour < 12 ? " am" : " pm"}
+                {dateData.hour < 12 ? dateData.hour : dateData.hour - 12}:
+                {dateData.min >= 10 ? dateData.min : "0" + dateData.min}
+                {dateData.hour < 12 ? " am" : " pm"}
               </Box>
             </Grid>
             <Grid item xs={6} className={classes.gridItem}>
@@ -156,14 +147,7 @@ export default function CustomCard(props) {
               </Box>
             </Grid>
 
-            <Button
-              variant="contained"
-              style={{ backgroundColor: "#FF005D", color: "#FFFFFF" }}
-              className={classes.submitButton}
-              onClick={handleClick}
-            >
-              Request
-            </Button>
+            <PinkButton handleSubmit={handleClick}>Request</PinkButton>
 
             {isReqSent === true && (
               <Typography variant="h6" className={classes.text}>
