@@ -25,7 +25,7 @@ import InputLabel from "@material-ui/core/InputLabel";
 
 const useStyles = makeStyles((theme) => ({
   card: {
-    margin: "2.5vw 2.5vw",
+    margin: "2vw 2.5vw",
     backgroundColor: "#DEE3E3",
     width: "95vw",
     padding: "20px",
@@ -34,12 +34,10 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
   },
   formControl: {
-    margin: theme.spacing(0),
-    width: "200px",
+    margin: "0 0 20px",
+    width: "165px",
   },
-  submitButton: {
-    marginTop: "20px",
-  },
+
   text: {
     color: "#33AB3E",
   },
@@ -137,7 +135,7 @@ function Home() {
 
   return (
     <div className={classes.root}>
-      <Typography variant="h3" style={{ margin: "1vw 2.5vw 0" }}>
+      <Typography variant="h4" style={{ margin: "1vw 2.5vw  " }}>
         Hello {userInfo.name},
       </Typography>
       <Card variant="outlined" className={classes.card}>
@@ -196,6 +194,7 @@ function Home() {
                     id="date-picker-dialog"
                     label="Arrival Date"
                     format="dd/MM/yyyy"
+                    className={classes.formControl}
                     value={selectedDate}
                     onChange={handleDateChange}
                     KeyboardButtonProps={{
@@ -207,6 +206,7 @@ function Home() {
                   <KeyboardTimePicker
                     margin="normal"
                     id="time-picker"
+                    className={classes.formControl}
                     label="Arrival Time"
                     value={selectedDate}
                     onChange={handleDateChange}

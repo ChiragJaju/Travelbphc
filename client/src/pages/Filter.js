@@ -214,8 +214,13 @@ export default function Filter() {
         </Card>
         <hr />
         {postsToShow.length !== 0 && (
-          <Typography variant="h4" style={{ margin: "1vw 2.5vw 0" }}>
+          <Typography variant="h4" style={{ margin: "1vw 4vw 0" }}>
             Results:
+          </Typography>
+        )}
+        {postsToShow.length === 0 && (
+          <Typography variant="h4" style={{ margin: "1vw 1vw" }}>
+            No posts to Display.
           </Typography>
         )}
         <div style={{ padding: "0 2.5vw 50px" }}>
