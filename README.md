@@ -1,2 +1,2 @@
 <h2> Hello People, <br>
-<h4> To see the deployment click [here](https://travel-bphc.herokuapp.com/) </h4>
+<h4> Here's the deployment: travel-bphc.herokuapp.com </h4>
